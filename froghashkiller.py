@@ -1,4 +1,4 @@
-import itertools
+﻿import itertools
 import hashlib
 import os
 import hashlib,binascii
@@ -10,7 +10,7 @@ continuar = True
 continuar2 = True
 continuargeral = True
 chrs = ""
-criptografia: ""
+criptografia = ""
 codehash = ""
 
 quadro = """
