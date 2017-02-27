@@ -1,7 +1,7 @@
 ﻿import itertools
 import hashlib
 import os
-import hashlib,binascii
+import binascii
 
 
 composicao = True
