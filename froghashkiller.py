@@ -57,6 +57,17 @@ intro = """
 ################################## AQUI COMEÇA O CÓDIGO DE VERDADE ###############################
 
 
+def input(s : str = None):
+    from sys import stdin
+    from sys import stdout
+    stdout.write(s)
+    stdout.flush()
+    try:
+        return stdin.readline().replace('\n', '')
+    except KeyboardInterrupt:
+        print("\r")
+        exit()
+
 print(logo)
 print(intro)
 
