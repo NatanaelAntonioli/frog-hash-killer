@@ -72,7 +72,7 @@ print(logo)
 print(intro)
 
 
-while continuargeral == True:
+while continuargeral:
     menuprincipal = int(input("O que deseja fazer?"))
     
     if menuprincipal ==1:
@@ -116,7 +116,7 @@ while continuargeral == True:
             print ("6 - Prosseguir")
             print ("")
 
-            while composicao == True:
+            while composicao:
                 
                 menu1 = int(input("O que deseja fazer?"))
                 print("")   
@@ -144,7 +144,7 @@ while continuargeral == True:
                 
             for n in range(minimo, maximo+1):
                 for xs in itertools.product(chrs, repeat=n):
-                    if continuar == True:
+                    if continuar:
                         if criptografia == "ntlm":
                             xs = str(xs)
                             xs = str(xs)
@@ -252,7 +252,7 @@ while continuargeral == True:
                         continue
                     palavra = (elem.replace("'", ""))
                     palavra = palavra[:-3] 
-                    if continuar2 == True:
+                    if continuar2:
                         if criptografia == "ntlm":
                             palavra = str(palavra)
                             senha1 = (palavra.replace("'", ""))
