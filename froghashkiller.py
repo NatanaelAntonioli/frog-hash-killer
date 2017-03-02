@@ -53,21 +53,6 @@ intro = """
 
 """
 
-wordlistquadro = """
-
-|-----------------------------------------------------------------------------------------------------------|
-| palavrasptbr | Lista de palavras em Português do Brasil, retiradas do Dicionário Aurélio.                 |
-| palavrasen   | Lista com mais de 400 mil palavras em Inglês                                               |
-| nomesbr      | Mais de 25 mil nomes do Brasil                                                             |
-| nomesint     | Nomes em inglês                                                                            |
-| datas        | Todas as datas possíveis desde 1900 até 2100, no formado ddmmaaaa                          |
-| datasint     | Todas as datas possíveis desde 1900 até 2100, no formado mmddaaaa                          |
-| 10milhoesen  | 10 milhões de senhas mais utilizadas, em Inglês                                            |
-| cinema       | Mais de 41 mil palavras envolvendo filmes, personagens e atores                            |
-|-----------------------------------------------------------------------------------------------------------|
-
-
-"""
 
 ################################## AQUI COMEÇA O CÓDIGO DE VERDADE ###############################
 
@@ -197,7 +182,53 @@ while continuargeral == True:
 
         if menuprincipal ==3 :
             
-            print (wordlistquadro)
+            def find_between(s, first, last):
+                try:
+                    start = s.index(first) + len(first)
+                    end = s.index(last, start)
+                    return s[start:end]
+                except ValueError:
+                    return ""
+
+            # Detectar wordlists:
+            wordlists = {}
+            from os import listdir
+            for word in listdir("."):
+                if word.split(".")[-1].lower() != "txt":
+                    continue
+                try:
+                    with open(word, "r") as f:
+                        first = f.readline().lower()
+                        if first.startswith("<desc>"):
+                            wordlists[word] = find_between(first, "<desc>", "</desc>")
+                        else:
+                            wordlists[word] = "No description."
+                except IOError:
+                    continue
+            # /
+
+            # Printar wordlists:
+            printed = False
+            for wordlist in list(wordlists.keys()):
+                try:
+                    largest
+                except NameError:
+                    largest = len(wordlist) + len(wordlists[wordlist]) + 1
+                if largest < len(wordlists[wordlist]):
+                    largest = len(wordlist) + len(wordlists[wordlist]) + 1
+
+                i = '|' + '-' * largest + '|'
+
+                if not printed:
+                    print(i)
+                    printed = True
+
+                print("| {0} | {1} |".format(".".join(wordlist.split(".")[:-1]), wordlists[wordlist]))
+
+            print(i)
+            del wordlist, wordlists, listdir, first, word, i
+            # /
+
             listauso = str(input("Escreva o nome da wordlist que deseja utilizar, exatamente como está no quadro. Caso possua uma wordlist personalizada em .txt, trasnfiara-a para o diretório do programa e insira  seu nome, sem extensão."))
             listauso += ".txt"
             with open (listauso, "r") as myfile:
@@ -206,6 +237,8 @@ while continuargeral == True:
             novo = data.split()
 
             for elem in novo:
+                    if "<desc>" in elem.lower():
+                        continue
                     palavra = (elem.replace("'", ""))
                     palavra = palavra[:-3] 
                     if continuar2 == True:
